@@ -1,9 +1,11 @@
 package org.java.gestore.eventi;
 
+import java.util.Date;
+
 public class Evento implements Prenota, Disdici {
 	
 	private String titolo;
-	private int data;
+	private Date data;
 	private int postiTotali;
 	private int postiPrenotati;
 	
@@ -21,7 +23,12 @@ public class Evento implements Prenota, Disdici {
 	}
 	
 	public void setData() {
-		this.data = data;
+		Date dataAttuale = new Date();
+		if (data.after(dataAttuale)) {
+			this.data = data;
+		} else {
+			System.out.println("La data inserita è gia passata");
+		}
 	}
 	
 	private int getPostiTotali() {
@@ -32,7 +39,7 @@ public class Evento implements Prenota, Disdici {
 		if (postiTotali > 0) {
 	    this.postiTotali = postiTotali;
 		} else {
-		   System.out.println("La data inserita non è corretta!");
+		   System.out.println("il numero di posti inserito non è corretto!");
 		}
 	}
 	
