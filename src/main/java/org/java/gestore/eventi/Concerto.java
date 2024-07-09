@@ -44,6 +44,6 @@ public class Concerto extends Evento {
 	
 	@Override
 	public String toString() {
-		return this.data + " " + "-" + " " + this.ora + " " + "-" + " " + this.titolo + " " + "-" + " " + this.prezzo;
+		return getData() + " " + "-" + " " + this.ora + " " + "-" + " " + getTitolo() + " " + "-" + " " + this.prezzo;
 	}
 }
