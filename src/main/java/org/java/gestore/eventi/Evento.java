@@ -39,7 +39,7 @@ public class Evento implements Prenota, Disdici {
 	}
 	
 	public Date LocalDate() {
-		return null;
+		return data;
 	}
 	
 	public void setData() {
@@ -89,18 +89,12 @@ public class Evento implements Prenota, Disdici {
 		System.out.println("La data non è disponibile: non puoi disdire i posti");
 	    } else if (postiPrenotati <= 0) {
 	    System.out.println("Non ci sono posti da disdire");	
-	    } if (postiPrenotati == 0) {
-		System.out.println("Non ci sono posti da disdire");
-	    }
+	    } 
     }
 	
 	@Override 
 	public String toString() {
 		return this.data + " " + "-" + " " + this.titolo;
-	}
-	
-	public int postiDisponibili() {
-		return postiTotali - postiPrenotati;
 	}
 	
 }
