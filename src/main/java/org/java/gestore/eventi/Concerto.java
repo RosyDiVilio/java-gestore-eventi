@@ -9,6 +9,7 @@ public class Concerto extends Evento {
 	private LocalTime ora;
 	private float prezzo;
 	
+	//costruttore per inizzializzare gli attributi
 	public Concerto(String titolo, Date data, int postiTotali, int postiPrenotati, LocalTime ora, float prezzo) {
 		super(titolo, data, postiTotali, postiPrenotati);
 		
@@ -22,6 +23,7 @@ public class Concerto extends Evento {
 		this.prezzo = prezzoRandom.nextInt(max - min) + min;
 	}
 	
+	//metodi getter e setter per modificare e recuperare gli attributi
 	public float getPrezzo() {
 		return this.prezzo;
 	}

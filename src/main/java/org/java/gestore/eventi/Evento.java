@@ -10,6 +10,7 @@ public class Evento implements Prenota, Disdici {
 	private int postiTotali;
 	private int postiPrenotati;
 	
+	//costruttore per inizzializzare gli attributi
 	public Evento(String titolo, Date data, int postiTotali, int postiPrenotati ) {
 		
 		if (data.before(LocalDate())) {
@@ -20,12 +21,14 @@ public class Evento implements Prenota, Disdici {
 			System.out.println("Il numero di porsti totali inserito non è corretto");
 		}
 
+		//inizializzazione degli attributi
 		this.titolo = titolo;
 		this.data = data;
 		this.postiTotali = postiTotali;
 		this.postiPrenotati = 0;
 	}
 	
+	//metodi getter e setter per modificare e recuperare gli attributi
 	public String getTitolo() {
 		return this.titolo;
 	}
@@ -72,24 +75,22 @@ public class Evento implements Prenota, Disdici {
 	
 	@Override 
 	public void prenota() {
-	   if (data.after(LocalDate())) {
-		   postiPrenotati = postiPrenotati + 1;
-	   } else {
+	   if (data.before(LocalDate())) {
 		   System.out.println("La data non è disponibile: non puoi prenotare i posti");
 	   } if (postiPrenotati > postiTotali) {
 		   System.out.println("Disponibilità posti esaurita");
 	   }
+	   postiPrenotati++;
 	}
 	
 	@Override
 	public void disdici() {
-		if (data.after(LocalDate()) && postiPrenotati > 0) {
-		postiPrenotati = postiPrenotati - 1;
-	    } else if (data.before(LocalDate())){
+	    if (data.before(LocalDate())){
 		System.out.println("La data non è disponibile: non puoi disdire i posti");
 	    } else if (postiPrenotati <= 0) {
 	    System.out.println("Non ci sono posti da disdire");	
 	    } 
+		postiPrenotati--;
     }
 	
 	@Override 

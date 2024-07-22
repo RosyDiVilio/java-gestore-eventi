@@ -12,6 +12,7 @@ public class Test {
 		
 		Scanner userInput = new Scanner(System.in);
 		
+		//richiesta informazioni all'utente
 		System.out.println("Inserisci il titolo dell'evento");
 		String titolo = userInput.nextLine();
 		
@@ -36,35 +37,37 @@ public class Test {
 		DateTimeFormatter formatterTwo = DateTimeFormatter.ofPattern("hh.mm");
 		String textOra = ora.formatted(formatter);
 		
+		//creazione istanza evento con i dati dell'utente
+		Evento evento = new evento(titolo, data, postiTotali, ora);
 		
+		//richiesta prenotazioni e controlli
 		System.out.println("Vuoi effettuare delle prenotazioni?");
 		String userAnswer = userInput.nextLine();
 		
 		if (userAnswer.equals("si")) {
 		   System.out.println("Quanti posti vuoi prenotare?");
 		   int postiPrenotati = userInput.nextInt();
-		   userInput.nextLine();
-		} else {
+		   //controllo dell'ipunt dell'utente
+		   if (postiPrenotati > postiTotali) {
+	          System.out.println("Impossibile effettuare prenotazione: numero posti superiore a quello disponibile");
+		   } else {
 		   System.out.println("Nessuna prenotazione effettuata");
-		} 
-		
-		//controllo dell'ipunt dell'utente
-		if (postiPrenotati > postiTotali) {
-			System.out.println("Impossibile effettuare prenotazione: numero posti superiore a quello disponibile");
-		}
-		
-		//effettuare la prenotazione
-		for (int i = 0; postiPrenotati < i; i++) {
-			if (postiPrenotati < postiTotali) {
-				evento.prenota();
+		   } 
+		   
+		   //effettuare la prenotazione
+			for (int i = 0; postiPrenotati < i; i++) {
+				if (postiPrenotati < postiTotali) {
+					evento.prenota();
+				}
 			}
-		}
+			
+			//informazioni per l'utente riguardanti i posti
+			int postiDisponibili = postiTotali - postiPrenotati;
+			System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
+			System.out.println("I posti prenotati sono: " + postiPrenotati);
 		
-		int postiDisponibili = postiTotali - postiPrenotati;
-		System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
-		System.out.println("I posti prenotati sono: " + postiPrenotati);
 		
-		
+		//richiesta disdette e controlli
 		System.out.println("Vuoi effettuare delle disdette?");
 		String userAnswerTwo = userInput.nextLine();
 		
@@ -72,33 +75,30 @@ public class Test {
 			System.out.println("Quanti posti vuoi disdire?");
 			int postiDisdetti = userInput.nextInt();
 			userInput.nextLine();
-		} else {
-			System.out.println("Nessuna disdetta effettuata");
-		}
-		
-		//controllo dell'input dell'utente
-		if (postiDisdetti > postiPrenotati) {
-			System.out.println("Impossidbile effetttuare disdetta: numero posti superiore a quelli prenotati");
-		}
-		
-		//effettuare la didetta
-		for (int i = 0; postiDisdetti > i; i--) {
-			if (postiDisdetti < postiPrenotati) {
-				evento.disidci();
+			//controllo dell'input dell'utente
+			if (postiDisdetti > postiPrenotati) {
+				System.out.println("Impossidbile effetttuare disdetta: numero posti superiore a quelli prenotati");
+		    } else {
+			  System.out.println("Nessuna disdetta effettuata");
+			
+			//effettuare la didetta
+			for (int i = 0; postiDisdetti > i; i++) {
+				if (postiDisdetti < postiPrenotati) {
+					evento.disdici();
+				}
 			}
 			
+			System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
+			System.out.println("I posti prenotati sono: " + postiPrenotati);
 		}
-
-		System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
-		System.out.println("I posti prenotati sono: " + postiPrenotati);
 		
-		
-		} 
+	  }
 	    
-	
-	    //userInput.close();
+	    userInput.close();
 
 	}
+  }
+}
 	
 
 
