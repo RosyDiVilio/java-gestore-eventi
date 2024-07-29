@@ -1,19 +1,18 @@
 package org.java.gestore.eventi;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Evento implements Prenota, Disdici {
+public class Evento implements Prenota, Disdici{
 	
 	private String titolo;
-	private Date data;
+	private LocalDate data;
 	private int postiTotali;
 	private int postiPrenotati;
 	
 	//costruttore per inizzializzare gli attributi
-	public Evento(String titolo, Date data, int postiTotali, int postiPrenotati ) {
+	public Evento(String titolo, LocalDate data, int postiTotali) {
 		
-		if (data.before(LocalDate())) {
+		if (data.isBefore(LocalDate.now())) {
 			System.out.println("La data inserita è già passata");
 		}
 		
@@ -37,16 +36,12 @@ public class Evento implements Prenota, Disdici {
 		this.titolo = titolo;
 	}
 	
-	public Date getData() {
+	public LocalDate getData() {
 		return this.data;
 	}
 	
-	public Date LocalDate() {
-		return data;
-	}
-	
 	public void setData() {
-		if (data.after(LocalDate())) {
+		if (data.isAfter(LocalDate.now())) {
 			this.data = data;
 		} else {
 			System.out.println("La data inserita è gia passata");
@@ -73,9 +68,9 @@ public class Evento implements Prenota, Disdici {
 		this.postiPrenotati = postiPrenotati;
 	}
 	
-	@Override 
+    @Override
 	public void prenota() {
-	   if (data.before(LocalDate())) {
+	   if (data.isBefore(LocalDate.now())) {
 		   System.out.println("La data non è disponibile: non puoi prenotare i posti");
 	   } if (postiPrenotati > postiTotali) {
 		   System.out.println("Disponibilità posti esaurita");
@@ -85,13 +80,17 @@ public class Evento implements Prenota, Disdici {
 	
 	@Override
 	public void disdici() {
-	    if (data.before(LocalDate())){
+	    if (data.isBefore(LocalDate.now())){
 		System.out.println("La data non è disponibile: non puoi disdire i posti");
 	    } else if (postiPrenotati <= 0) {
 	    System.out.println("Non ci sono posti da disdire");	
 	    } 
 		postiPrenotati--;
     }
+	
+	public int postiDisponibili() {
+		return (postiTotali - postiPrenotati);
+	}
 	
 	@Override 
 	public String toString() {

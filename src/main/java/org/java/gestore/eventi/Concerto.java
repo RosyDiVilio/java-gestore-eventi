@@ -1,8 +1,7 @@
 package org.java.gestore.eventi;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Random;
 
 public class Concerto extends Evento {
 	
@@ -10,17 +9,13 @@ public class Concerto extends Evento {
 	private float prezzo;
 	
 	//costruttore per inizzializzare gli attributi
-	public Concerto(String titolo, Date data, int postiTotali, int postiPrenotati, LocalTime ora, float prezzo) {
-		super(titolo, data, postiTotali, postiPrenotati);
+	public Concerto(String titolo, LocalDate data, int postiTotali, LocalTime ora, float prezzo) {
+		super(titolo, data, postiTotali);
 		
-		LocalTime oraLocale = LocalTime.now();
+		//LocalTime oraLocale = LocalTime.now();
 		this.ora = ora;
+		this.prezzo = prezzo;
 		
-		int min = 111111;
-		int max = 999999;
-		Random prezzoRandom = new Random();
-		
-		this.prezzo = prezzoRandom.nextInt(max - min) + min;
 	}
 	
 	//metodi getter e setter per modificare e recuperare gli attributi
@@ -46,6 +41,6 @@ public class Concerto extends Evento {
 	
 	@Override
 	public String toString() {
-		return getData() + " " + "-" + " " + this.ora + " " + "-" + " " + getTitolo() + " " + "-" + " " + this.prezzo;
+		return super.getData() + " " + "-" + " " + this.ora + " " + "-" + " " + super.getTitolo() + " " + "-" + " " + "€" + this.prezzo;
 	}
 }

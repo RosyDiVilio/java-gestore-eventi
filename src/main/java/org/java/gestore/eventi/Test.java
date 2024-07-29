@@ -1,6 +1,5 @@
 package org.java.gestore.eventi;
 
-import java.util.Date;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,8 +20,9 @@ public class Test {
 		
 		
 		//formattare data utente
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-		String textData = data.formatted(formatter);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("DD/MM/YYYY");
+		String textData = date.format(formatter);
 		
 		
 		System.out.println("Inserisci il numero di posti totale dell'evento");
@@ -32,13 +32,21 @@ public class Test {
 		System.out.println("Inserisci l'ora dell'evento in formato hh.mm");
 		String ora = userInput.nextLine();
 		
-		
 		//formattare ora utente
+		LocalTime hour = LocalTime.now();
 		DateTimeFormatter formatterTwo = DateTimeFormatter.ofPattern("hh.mm");
-		String textOra = ora.formatted(formatter);
+		String textOra = hour.format(formatterTwo);
 		
-		//creazione istanza evento con i dati dell'utente
-		Evento evento = new evento(titolo, data, postiTotali, ora);
+		
+		System.out.println("Inserisci il prezzo dell'evento");
+		float prezzo = userInput.nextFloat();
+		userInput.nextLine();
+		
+		
+		//creazione istanza concerto con i dati dell'utente
+		Concerto concerto = null;
+	    concerto = new Concerto(titolo, date, postiTotali, hour, prezzo);
+		
 		
 		//richiesta prenotazioni e controlli
 		System.out.println("Vuoi effettuare delle prenotazioni?");
@@ -50,21 +58,19 @@ public class Test {
 		   //controllo dell'ipunt dell'utente
 		   if (postiPrenotati > postiTotali) {
 	          System.out.println("Impossibile effettuare prenotazione: numero posti superiore a quello disponibile");
-		   } else {
-		   System.out.println("Nessuna prenotazione effettuata");
 		   } 
 		   
 		   //effettuare la prenotazione
-			for (int i = 0; postiPrenotati < i; i++) {
+			for (int i = 0; postiPrenotati > i; i++) {
 				if (postiPrenotati < postiTotali) {
-					evento.prenota();
+					concerto.prenota();
 				}
 			}
 			
 			//informazioni per l'utente riguardanti i posti
-			int postiDisponibili = postiTotali - postiPrenotati;
-			System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
+			System.out.println("I posti ancora disponibili sono: " + concerto.postiDisponibili());
 			System.out.println("I posti prenotati sono: " + postiPrenotati);
+			userInput.nextLine();
 		
 		
 		//richiesta disdette e controlli
@@ -78,18 +84,18 @@ public class Test {
 			//controllo dell'input dell'utente
 			if (postiDisdetti > postiPrenotati) {
 				System.out.println("Impossidbile effetttuare disdetta: numero posti superiore a quelli prenotati");
-		    } else {
-			  System.out.println("Nessuna disdetta effettuata");
+		    } 
 			
 			//effettuare la didetta
-			for (int i = 0; postiDisdetti > i; i++) {
+			for (int i = 0; postiPrenotati > i; i++) {
 				if (postiDisdetti < postiPrenotati) {
-					evento.disdici();
+					concerto.disdici();
 				}
 			}
 			
-			System.out.println("I posti ancora disponibili sono: " + postiDisponibili);
+			System.out.println("I posti ancora disponibili sono: " + concerto.postiDisponibili());
 			System.out.println("I posti prenotati sono: " + postiPrenotati);
+			System.out.println(concerto.toString());
 		}
 		
 	  }
@@ -98,7 +104,7 @@ public class Test {
 
 	}
   }
-}
+
 	
 
 
