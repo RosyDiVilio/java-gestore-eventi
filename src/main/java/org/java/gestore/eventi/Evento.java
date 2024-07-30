@@ -17,7 +17,7 @@ public class Evento implements Prenota, Disdici{
 		}
 		
 		if (postiTotali <= 0) {
-			System.out.println("Il numero di porsti totali inserito non è corretto");
+			System.out.println("Il numero di posti totali inserito non è corretto");
 		}
 
 		//inizializzazione degli attributi

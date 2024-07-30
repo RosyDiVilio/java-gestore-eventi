@@ -12,7 +12,7 @@ public class Concerto extends Evento {
 	public Concerto(String titolo, LocalDate data, int postiTotali, LocalTime ora, float prezzo) {
 		super(titolo, data, postiTotali);
 		
-		//LocalTime oraLocale = LocalTime.now();
+		//inizzializzazione degli attributi
 		this.ora = ora;
 		this.prezzo = prezzo;
 		
@@ -41,6 +41,6 @@ public class Concerto extends Evento {
 	
 	@Override
 	public String toString() {
-		return super.getData() + " " + "-" + " " + this.ora + " " + "-" + " " + super.getTitolo() + " " + "-" + " " + "€" + this.prezzo;
+		return "Data e ora: " +  super.getData() + " " + "alle" + " " + this.ora + " " + "-" + " " + "Titolo evento: " + super.getTitolo() + " " + "-" + " " + "Prezzo: " + "€" + getPrezzoUmano();
 	}
 }
