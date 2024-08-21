@@ -27,7 +27,7 @@ public class Concerto extends Evento {
 		return String.format("%.2f", this.prezzo);
 	}
 	
-	public void setPrezzo() {
+	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 	
@@ -35,7 +35,7 @@ public class Concerto extends Evento {
 		return this.ora;
 	}
 	
-	public void setOra() {
+	public void setOra(LocalTime ora) {
 		this.ora = ora;
 	}
 	

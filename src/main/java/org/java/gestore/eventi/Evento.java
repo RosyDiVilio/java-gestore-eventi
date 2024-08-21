@@ -32,7 +32,7 @@ public class Evento implements Prenota, Disdici{
 		return this.titolo;
 	}
 	
-	public void setTitolo() {
+	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
 	
@@ -40,7 +40,7 @@ public class Evento implements Prenota, Disdici{
 		return this.data;
 	}
 	
-	public void setData() {
+	public void setData(LocalDate data) {
 		if (data.isAfter(LocalDate.now())) {
 			this.data = data;
 		} else {
@@ -52,7 +52,7 @@ public class Evento implements Prenota, Disdici{
 		return this.postiTotali;
 	}
 	
-	public void setPostiTotali() {
+	public void setPostiTotali(int postiTotali) {
 		if (postiTotali > 0) {
 	    this.postiTotali = postiTotali;
 		} else {
@@ -64,7 +64,7 @@ public class Evento implements Prenota, Disdici{
 		return this.postiPrenotati;
 	}
 	
-	public void setPostiPrenotati() {
+	public void setPostiPrenotati(int postiPrenotati) {
 		this.postiPrenotati = postiPrenotati;
 	}
 	
@@ -72,8 +72,11 @@ public class Evento implements Prenota, Disdici{
 	public void prenota() {
 	   if (data.isBefore(LocalDate.now())) {
 		   System.out.println("La data non è disponibile: non puoi prenotare i posti");
-	   } if (postiPrenotati > postiTotali) {
+		   return;
+	   } 
+	   if (postiPrenotati >= postiTotali) {
 		   System.out.println("Disponibilità posti esaurita");
+		   return;
 	   }
 	   postiPrenotati++;
 	}

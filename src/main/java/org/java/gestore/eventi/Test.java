@@ -118,7 +118,7 @@ public class Test {
 			}
 			
 			System.out.println("I posti ancora disponibili sono: " + concerto.postiDisponibili());
-			System.out.println("I posti prenotati sono: " + (postiPrenotati - postiDisdetti));
+			System.out.println("I posti prenotati sono: " + concerto.getPostiPrenotati());
 			System.out.println(concerto.toString());
 		}
 		
